@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busa's Datenight Games</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap');
+
+        /* Base styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f3ff 0%, #e0e7ff 100%);
+            color: #1e293b;
+        }
+
+        .header {
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(45deg, #6d28d9 0%, #8b5cf6 100%);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link.active, .nav-link:hover {
+            background-color: #7c3aed;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
+        }
+        
+        .game-card h2 {
+            font-family: 'Pacifico', cursive;
+            color: #6d28d9;
+        }
+
+        .btn {
+            background: #6d28d9;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #5b21b6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(109, 40, 217, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f59e0b;
+        }
+        .btn-secondary:hover {
+            background: #d97706;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-indigo-50">
+
+    <!-- Main container: Full width on mobile, max-width on larger screens -->
+    <div class="container w-full max-w-6xl mx-auto my-4 md:my-8 flex flex-col md:flex-row">
+
+        <!-- Navigation Menu: Full width on mobile, fixed width on desktop -->
+        <div class="nav-menu w-full md:w-1/3 lg:w-1/4 md:flex-shrink-0 bg-white p-4 sm:p-6 md:p-8 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none shadow-lg overflow-y-auto max-h-[50vh] md:max-h-[calc(100vh-4rem)] flex flex-col">
+            <h1 class="header text-3xl md:text-4xl text-center mb-6 p-4 rounded-xl text-white">Busa's Datenight Games</h1>
+            <nav class="flex flex-col space-y-2 flex-grow">
+                <button onclick="renderGame('home')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left">
+                    <i class="fas fa-home mr-2 text-violet-500 w-6 text-center"></i> Home
+                </button>
+                <h3 class="text-sm font-bold text-violet-800 uppercase tracking-wider px-2 pt-4">Fun & Sweet</h3>
+                <!-- Sweet Games -->
+                <button onclick="renderGame('couple-quiz')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-heart-circle-question mr-2 text-violet-500 w-6 text-center"></i> Couple Quiz</button>
+                <button onclick="renderGame('love-letter')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-envelope-open-text mr-2 text-violet-500 w-6 text-center"></i> Love Letter Generator</button>
+                <button onclick="renderGame('date-wheel')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-fan mr-2 text-violet-500 w-6 text-center"></i> Spin-the-Wheel Date</button>
+                <button onclick="renderGame('truth-or-dare')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-user-friends mr-2 text-violet-500 w-6 text-center"></i> Truth or Dare</button>
+                <button onclick="renderGame('two-truths-lie')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-user-secret mr-2 text-violet-500 w-6 text-center"></i> Two Truths & a Lie</button>
+                <button onclick="renderGame('would-you-rather')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-comment-dots mr-2 text-violet-500 w-6 text-center"></i> Would You Rather</button>
+                <button onclick="renderGame('never-have-i-ever')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-hand-holding-heart mr-2 text-violet-500 w-6 text-center"></i> Never Have I Ever</button>
+                <button onclick="renderGame('dream-date')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-champagne-glasses mr-2 text-violet-500 w-6 text-center"></i> Dream Date Builder</button>
+                <button onclick="renderGame('guess-song')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-music mr-2 text-violet-500 w-6 text-center"></i> Guess That Song</button>
+                <button onclick="renderGame('memory-match')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-brain mr-2 text-violet-500 w-6 text-center"></i> Memory Match</button>
+                <button onclick="renderGame('draw-together')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-paint-brush mr-2 text-violet-500 w-6 text-center"></i> Draw Together</button>
+                <button onclick="renderGame('timeline')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-timeline mr-2 text-violet-500 w-6 text-center"></i> Relationship Timeline</button>
+                <button onclick="renderGame('photo-hunt')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-camera-retro mr-2 text-violet-500 w-6 text-center"></i> Photo Scavenger Hunt</button>
+                <button onclick="renderGame('love-language')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-language mr-2 text-violet-500 w-6 text-center"></i> Love Language Quiz</button>
+                <button onclick="renderGame('story-starter')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-pen-nib mr-2 text-violet-500 w-6 text-center"></i> Story Starter</button>
+
+                <hr class="my-4 border-slate-200">
+                <h3 class="text-sm font-bold text-violet-800 uppercase tracking-wider px-2">Spicy Games 🔥</h3>
+                 <!-- Spicy Games -->
+                <button onclick="renderGame('drinking-wheel')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-beer-mug-empty mr-2 text-amber-500 w-6 text-center"></i> Drinking Games Wheel</button>
+                <button onclick="renderGame('spicy-confessions')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-fire-alt mr-2 text-amber-500 w-6 text-center"></i> Spicy Confessions</button>
+                <button onclick="renderGame('dare-or-drink')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-glass-whiskey mr-2 text-amber-500 w-6 text-center"></i> Dare or Drink</button>
+                <button onclick="renderGame('intimate-wyr')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-face-kiss-wink-heart mr-2 text-amber-500 w-6 text-center"></i> Intimate Would You Rather</button>
+                <button onclick="renderGame('sexy-dice')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-dice mr-2 text-amber-500 w-6 text-center"></i> Sexy Dice</button>
+                <button onclick="renderGame('strip-trivia')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-person-booth mr-2 text-amber-500 w-6 text-center"></i> Strip Trivia</button>
+                <button onclick="renderGame('forbidden-word')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-comment-slash mr-2 text-amber-500 w-6 text-center"></i> Forbidden Word</button>
+                <button onclick="renderGame('blind-sensation')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-eye-slash mr-2 text-amber-500 w-6 text-center"></i> Blindfolded Sensation</button>
+                <button onclick="renderGame('massage-challenge')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-hand-sparkles mr-2 text-amber-500 w-6 text-center"></i> Intimate Massage Challenge</button>
+            </nav>
+            <footer class="text-center text-xs text-slate-400 mt-6">
+                &copy; 2025 Dube Developers
+            </footer>
+        </div>
+
+        <!-- Game Content Area: Full width on mobile, remaining width on desktop -->
+        <div id="game-content" class="w-full game-content bg-slate-50 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none shadow-lg overflow-y-auto max-h-[calc(100vh-4rem)]">
+            <!-- Game content is dynamically loaded here -->
+        </div>
+
+    </div>
+
+    <script>
+        const gameContentDiv = document.getElementById('game-content');
+        const navButtons = document.querySelectorAll('.nav-link');
+
+        // --- Master List of All Games ---
+        const allGames = [
+            { id: 'couple-quiz', name: 'Couple Quiz', icon: 'fa-heart-circle-question', color: 'text-violet-500' },
+            { id: 'love-letter', name: 'Love Letter Generator', icon: 'fa-envelope-open-text', color: 'text-violet-500' },
+            { id: 'date-wheel', name: 'Spin-the-Wheel Date', icon: 'fa-fan', color: 'text-violet-500' },
+            { id: 'truth-or-dare', name: 'Truth or Dare', icon: 'fa-user-friends', color: 'text-violet-500' },
+            { id: 'two-truths-lie', name: 'Two Truths & a Lie', icon: 'fa-user-secret', color: 'text-violet-500' },
+            { id: 'would-you-rather', name: 'Would You Rather', icon: 'fa-comment-dots', color: 'text-violet-500' },
+            { id: 'never-have-i-ever', name: 'Never Have I Ever', icon: 'fa-hand-holding-heart', color: 'text-violet-500' },
+            { id: 'dream-date', name: 'Dream Date Builder', icon: 'fa-champagne-glasses', color: 'text-violet-500' },
+            { id: 'guess-song', name: 'Guess That Song', icon: 'fa-music', color: 'text-violet-500' },
+            { id: 'memory-match', name: 'Memory Match', icon: 'fa-brain', color: 'text-violet-500' },
+            { id: 'draw-together', name: 'Draw Together', icon: 'fa-paint-brush', color: 'text-violet-500' },
+            { id: 'timeline', name: 'Relationship Timeline', icon: 'fa-timeline', color: 'text-violet-500' },
+            { id: 'photo-hunt', name: 'Photo Scavenger Hunt', icon: 'fa-camera-retro', color: 'text-violet-500' },
+            { id: 'love-language', name: 'Love Language Quiz', icon: 'fa-language', color: 'text-violet-500' },
+            { id: 'story-starter', name: 'Story Starter', icon: 'fa-pen-nib', color: 'text-violet-500' },
+            { id: 'drinking-wheel', name: 'Drinking Games Wheel', icon: 'fa-beer-mug-empty', color: 'text-amber-500' },
+            { id: 'spicy-confessions', name: 'Spicy Confessions', icon: 'fa-fire-alt', color: 'text-amber-500' },
+            { id: 'dare-or-drink', name: 'Dare or Drink', icon: 'fa-glass-whiskey', color: 'text-amber-500' },
+            { id: 'intimate-wyr', name: 'Intimate Would You Rather', icon: 'fa-face-kiss-wink-heart', color: 'text-amber-500' },
+            { id: 'sexy-dice', name: 'Sexy Dice', icon: 'fa-dice', color: 'text-amber-500' },
+            { id: 'strip-trivia', name: 'Strip Trivia', icon: 'fa-person-booth', color: 'text-amber-500' },
+            { id: 'forbidden-word', name: 'Forbidden Word', icon: 'fa-comment-slash', color: 'text-amber-500' },
+            { id: 'blind-sensation', name: 'Blindfolded Sensation', icon: 'fa-eye-slash', color: 'text-amber-500' },
+            { id: 'massage-challenge', name: 'Intimate Massage Challenge', icon: 'fa-hand-sparkles', color: 'text-amber-500' }
+        ];
+
+        // --- Game data and variables (EXPANDED TO 20+ where applicable) ---
+        const coupleQuizQuestions = [
+            "What is my favorite meal?", "What is my biggest pet peeve?", "Where was our first kiss?", "What's my secret talent?", "If I could travel anywhere, where would it be?", "What is the best gift you have ever given me?", "What is my favorite movie genre?", "What is my go-to karaoke song?", "If I won the lottery, what's the first thing I would do?", "What is my favorite part of a date?", "What's my coffee order?", "Who is my celebrity crush?", "What was my first job?", "What's my favorite season?", "What am I most proud of?", "What's my biggest fear?", "What's my favorite childhood memory?", "What's my dream car?", "What's my favorite type of music?", "What's one thing I can't live without?"
+        ];
+        const loveLetterPrompts = [
+            "A fond memory we share...", "Something I admire about you...", "A future dream we share...", "A funny inside joke...", "Your most charming nickname for me...", "The thing I love most about your eyes...", "What I think about when I'm away from you...", "My favorite place in the world is when I'm with you, because...", "A song that reminds me of you is...", "I knew I loved you when...", "You make me a better person by...", "My favorite physical feature of yours is...", "A small thing you do that I love is...", "Our biggest strength as a couple is...", "I can't wait to ... with you.", "You have the best laugh when...", "I appreciate it so much when you...", "My favorite adventure with you was...", "You inspire me to...", "I love the way you look at me when..."
+        ];
+        const truths = [
+            "What was your first impression of me?", "What's a secret you've never told anyone?", "What's the most embarrassing thing you've ever done?", "What's one thing you want to change about yourself?", "What's a lie you've told that you regret?", "What's your biggest fear?", "What's a bad habit you have that you'd like to quit?", "If you could have dinner with anyone, living or dead, who would it be?", "What's the most romantic thing you've ever done for someone?", "What's a memory you have of us that you cherish the most?", "What's one thing you are most proud of in our relationship?", "What is a personal goal that you are currently working on?", "What is something you’ve always wanted to learn?", "What is your earliest memory?", "If you could relive one day of your life, which one would it be?", "What is your biggest regret?", "What is a quality you admire most about me?", "What do you think is our biggest challenge as a couple?", "What's the best piece of advice you've ever received?", "What's a dream you've given up on?"
+        ];
+        const dares = [
+            "Give your partner a 1-minute back massage.", "Kiss your partner on the neck for 30 seconds.", "Blindfold your partner and feed them something delicious.", "Whisper something dirty in your partner's ear.", "Take off one article of clothing.", "Let your partner blindfold you and put on an item of their clothing on you.", "Tell your partner a fantasy you've had about them.", "Re-enact a scene from your favorite romantic movie together.", "Do your best sexy walk across the room.", "Write a love note to your partner right now.", "Give your partner a one-minute passionate kiss.", "Remove one item of clothing your partner is wearing, without using your hands.", "Do your best seductive dance for 30 seconds.", "Take a sexy picture of your partner and show them.", "Give your partner a lap dance.", "Let your partner pick your outfit for a day.", "Tell your partner a dirty joke.", "Perform a striptease for your partner.", "Give your partner a sensual foot rub for 5 minutes.", "Talk in a sexy whisper for the next 10 minutes."
+        ];
+        const wouldYouRatherQuestions = [
+            "Be able to read minds or be able to fly?", "Have a date night every week or a vacation every year?", "Always be five minutes late or always be five minutes early?", "Be able to speak every language or be a master of every instrument?", "Live in a treehouse or a boat?", "Have a perfect memory or be able to forget painful memories?", "Cuddle with a koala or ride a giraffe?", "Be a superhero or a supervillain?", "Have a private chef or a personal driver?", "Be able to talk to animals or speak all human languages?", "Live without internet or live without air conditioning?", "Be rich and famous or be rich and anonymous?", "Have the power of invisibility or the power of flight?", "Only be able to whisper or only be able to shout?", "Have your own personal theme song playing everywhere you go, or not have music at all?", "Live in a beautiful, but haunted house, or a boring, but perfectly normal house?", "Have an endless supply of pizza or an endless supply of tacos?", "Be a professional dancer or a professional singer?", "Travel to the past or travel to the future?", "Be a famous movie star or a famous author?"
+        ];
+        const neverHaveIEverStatements = [
+            "Never have I ever fallen asleep during a movie we watched together.", "Never have I ever snooped through your phone.", "Never have I ever lied about where I was going.", "Never have I ever forgotten our anniversary (or a special date).", "Never have I ever pretended to like a gift you gave me.", "Never have I ever been scared by a horror movie.", "Never have I ever secretly eaten your food.", "Never have I ever regifted a present.", "Never have I ever sent a risky text to the wrong person.", "Never have I ever made a purchase that I hid from you.", "Never have I ever had a crush on one of your friends.", "Never have I ever gotten a ticket while driving.", "Never have I ever gone skinny dipping.", "Never have I ever pretended to be sick to get out of a date.", "Never have I ever sung in the shower.", "Never have I ever had a surprise party thrown for me.", "Never have I ever broken a bone.", "Never have I ever gone bungee jumping.", "Never have I ever had a food fight.", "Never have I ever danced on a table."
+        ];
+        const memoryMatchCards = [
+            "First Date", "First Kiss", "Our Song", "Favorite Place", "Funny Joke", "First Trip", "Best Meal", "A Promise", "Pet Name", "Late Night Talk", "First 'I Love You'", "Our Anniversary", "Favorite Restaurant", "Dream Vacation", "A Secret", "Shared Hobby"
+        ];
+        const photoHuntPrompts = [
+             "A place we had our first kiss or a place we want to kiss.", "Our favorite meal or something we cooked together.", "A silly selfie with a funny face.", "Something that reminds you of me.", "A photo of us holding hands.", "A picture of your favorite outfit of mine.", "Something the color of your partner's eyes.", "A photo of your feet together.", "A picture of you two recreating a famous movie pose.", "A photo of you two in your favorite cuddling position.", "Something that represents a future goal.", "A picture of you two with your favorite drinks.", "A shadow selfie of you two holding hands.", "A photo of something you built or created together.", "A picture of your partner laughing.", "Something that starts with the first letter of your partner's name.", "A photo of you two 'cheers-ing'.", "A picture of your hands making a heart shape.", "A photo of you two looking at each other.", "A picture of your partner's favorite snack."
+        ];
+        const loveLanguages = [
+            { language: "Words of Affirmation", description: "You feel loved when your partner gives you compliments, says 'I love you', or sends you encouraging texts." },
+            { language: "Acts of Service", description: "You feel loved when your partner does things for you, like making coffee, doing chores, or running errands." },
+            { language: "Receiving Gifts", description: "You feel loved when your partner gives you thoughtful presents, big or small, that show they were thinking of you." },
+            { language: "Quality Time", description: "You feel loved when your partner gives you their undivided attention, like a one-on-one dinner or a walk without distractions." },
+            { language: "Physical Touch", description: "You feel loved through physical affection, like hugs, holding hands, cuddling, or a back rub." }
+        ];
+        const spicyConfessions = [
+            "What's your biggest fantasy involving your partner?", "Confess a secret you've been holding onto.", "What's a new position you want to try with me?", "What's the naughtiest thing you've ever done in public with your partner?", "What is a turn-on that you've never told your partner about?", "What's the sexiest outfit you've ever seen me wear?", "What is the most intimate place you have ever been with me?", "What is the dirtiest thought you've ever had about me?", "What is something you secretly enjoy that I do that you've never told me?", "What's a role-playing scenario you've always wanted to try?", "What is the most adventurous place we've had sex?", "What's one thing I do that drives you wild?", "What is a celebrity crush you have that you think I'd be jealous of?", "What is a secret talent I have in the bedroom?", "What is a romantic thing I've done for you that turned you on?", "What is a new sexual experience you want to have with me?", "What's the naughtiest text you've ever sent or received?", "What's a sensual gift you'd love to receive from me?", "What's a boundary you want to explore with me?", "Describe the most passionate kiss we've ever shared."
+        ];
+        const intimateWYRQuestions = [
+            "Kiss in the rain or cuddle by a fire?", "Give a sensual massage or receive one?", "Try something new in the bedroom or perfect a favorite move?", "Role-play as strangers meeting at a bar or as a famous couple?", "Have a quickie in a risky place or a long, slow session at home?", "Whisper dirty thoughts or write them in a steamy letter?", "Use blindfolds and feathers or handcuffs and ice cubes?", "Tease with words or with touch?", "Be dominant or be submissive for a night?", "Explore a new fetish together or stick to what you know?", "Watch a sexy movie or read erotica out loud?", "Have sex in the morning or late at night?", "Use toys or just your bodies?", "Be loud and vocal or quiet and intense?", "Shower together or give each other a bath?", "Focus on foreplay or go straight to the main event?", "Have a romantic, candlelit session or a wild, adventurous one?", "Try body paint or edible massage oil?", "Be the one to initiate or be seduced?", "Talk about fantasies or act one out?"
+        ];
+        const stripTriviaQuestions = [
+            { q: "What was the location of our first official date?" }, { q: "What is my middle name?" }, { q: "What's my biggest turn-on?" }, { q: "What movie have we watched together the most times?" }, { q: "What is my favorite non-physical thing about you?" }, { q: "If I could have any superpower, what would it be?" }, { q: "What is my go-to comfort food?" }, { q: "What was I wearing on our first date?" }, { q: "What is my favorite song at the moment?" }, { q: "What is my biggest insecurity?" }, { q: "What is the name of my first pet?" }, { q: "What is my dream job?" }, { q: "What is my favorite way to be touched?" }, { q: "What is my most-used emoji?" }, { q: "What is my 'love language'?" }, { q: "What is one secret I've told you and no one else?" }, { q: "What is my favorite inside joke between us?" }, { q: "What is my most irrational fear?" }, { q: "What is my favorite position... to sleep in?" }, { q: "Who said 'I love you' first?" }
+        ];
+        const diceActions = ["Kiss", "Lick", "Caress", "Gently Bite", "Massage", "Tease", "Nibble", "Suck", "Tickle", "Spank", "Blow on", "Trace with a finger"];
+        const diceBodyParts = ["Neck", "Lips", "Inner Thigh", "Ear Lobe", "Lower Back", "Stomach", "Shoulder", "Wrist", "Back of the Knee", "Collarbone", "Fingers", "Toes"];
+        const sensationItems = ["Feather", "Ice Cube", "Silk Scarf", "Fingertip", "Your Breath", "Drop of Honey", "A flower petal", "The tip of your tongue", "A piece of fruit", "A warm breath", "A cool piece of metal", "The edge of a credit card", "A soft makeup brush", "A drop of water", "Your hair", "A piece of velvet", "An unlit candle (for the texture)", "A pearl necklace", "A blade of grass", "The fizz from a drink"];
+        const massageChallenges = [
+            "Give your partner a 5-minute back massage using only your fingertips.", "Give your partner a slow, sensual neck massage.", "Use a feather or your breath to gently touch your partner's skin.", "Give your partner a foot massage that starts with gentle kisses.", "Massage your partner's scalp while whispering something sexy in their ear.", "Use warm oil to give a 10-minute shoulder rub.", "Massage their hands, focusing on each finger individually.", "Give a massage using only your forearms.", "Trace letters on their back with your finger and have them guess the word.", "Focus a 5-minute massage only on their face and temples.", "Give a calf massage after a long day.", "Use your hair to gently brush against their skin.", "Blindfold your partner and have them guess where you will massage next.", "Give a massage using only your thumbs.", "Focus on the lower back and hips.", "Gently massage their ears and jawline.", "Give a full body massage with no talking, only music.", "Use an ice cube to alternate between hot and cold sensations during a massage.", "Give a massage with the goal of making them laugh (tickling allowed!).", "End a massage with a long, warm hug."
+        ];
+        const songs = [
+                { lyrics: "I found a love for me. Darling, just dive right in, and follow my lead...", title: "Perfect - Ed Sheeran" }, { lyrics: "You're still the one I run to. The one that I belong to...", title: "You're Still The One - Shania Twain" }, { lyrics: "And when you smile, the whole world stops and stares for a while...", title: "Just the Way You Are - Bruno Mars" }, { lyrics: "'Cause all of me loves all of you. Love your curves and all your edges...", title: "All of Me - John Legend" }, { lyrics: "Wise men say only fools rush in. But I can't help falling in love with you...", title: "Can't Help Falling in Love - Elvis Presley" }, { lyrics: "I have died every day waiting for you. Darling, don't be afraid I have loved you for a thousand years...", title: "A Thousand Years - Christina Perri" }, { lyrics: "When the evening shadows and the stars appear, and there is no one there to dry your tears, I could hold you for a million years...", title: "Make You Feel My Love - Adele" }, { lyrics: "At last, my love has come along. My lonely days are over, and life is like a song...", title: "At Last - Etta James" }, { lyrics: "I'm so in love with you, whatever you want to do is all right with me...", title: "Let's Stay Together - Al Green" }, { lyrics: "And I'd give up forever to touch you, 'cause I know that you feel me somehow...", title: "Iris - Goo Goo Dolls" }, { lyrics: "It's a beautiful night, we're looking for something dumb to do. Hey baby, I think I wanna marry you...", title: "Marry You - Bruno Mars" }, { lyrics: "Remember those walls I built? Well, baby, they're tumbling down. And they didn't even put up a fight...", title: "Halo - Beyoncé" }, { lyrics: "I hope you don't mind that I put down in words how wonderful life is while you're in the world...", title: "Your Song - Elton John" }, { lyrics: "Something in the way she moves attracts me like no other lover...", title: "Something - The Beatles" }, { lyrics: "I'm lucky I'm in love with my best friend. Lucky to have been where I have been...", title: "Lucky - Jason Mraz & Colbie Caillat" }, { lyrics: "And it's you and me and all of the people... and I don't know why, I can't keep my eyes off of you.", title: "Home - Edward Sharpe & The Magnetic Zeros" }, { lyrics: "It's a love story, baby, just say 'Yes'.", title: "Love Story - Taylor Swift" }, { lyrics: "I could make you happy, make your dreams come true. Nothing that I wouldn't do...", title: "I Wanna Be Yours - Arctic Monkeys" }, { lyrics: "Every little thing she does is magic. Everything she do just turns me on...", title: "Every Little Thing She Does Is Magic - The Police" }, { lyrics: "If you're lost you can look and you will find me... If you fall, I will catch you, I'll be waiting...", title: "Time After Time - Cyndi Lauper" }, { lyrics: "Near, far, wherever you are, I believe that the heart does go on...", title: "My Heart Will Go On - Celine Dion" }
+        ];
+        const dateIdeas = [
+            "Movie night at home with blankets and popcorn", "Cook a fancy dinner together", "Go for a scenic hike or walk", "Build a fort and tell stories inside", "Have a DIY spa day with face masks", "Go stargazing with a blanket and thermos", "Visit a local art gallery or museum", "Have a picnic in the park", "Go to a live comedy show", "Try a new restaurant neither of you have been to", "Game night with your favorite board games", "Go to a concert or listen to your favorite album together", "Create a new playlist for the two of you", "Have a dance party in the living room", "Go bowling or play mini-golf", "Visit a farmers market", "Take a pottery class", "Go to a drive-in movie", "Volunteer together", "Go kayaking or canoeing"
+        ];
+        const drinkingIdeas = [
+            "Take a sip if you've lied to me about something small today.", "Finish your drink if you've ever 'accidentally' worn my clothes.", "Take a shot if you were the first to say 'I love you'.", "Drink if you've ever stalked my social media.", "Take a sip if you have a secret crush on a celebrity.", "Finish your drink if you have a secret that you're hiding from me.", "Take a shot if you've ever fantasized about my friend.", "Drink if you've ever re-gifted something I gave you.", "Take a sip for every year we've been together.", "Finish your drink if you think you're the better cook.", "Take a shot if you've ever snooped on my phone.", "Drink if you've ever pretended to like my cooking.", "Take a sip if you've ever been jealous.", "Finish your drink if you've ever lied to get out of a date with me.", "Take a shot if you think I'm the messier one.", "Drink if you've ever forgotten a special occasion.", "Take a sip if you've ever told a white lie to spare my feelings.", "Finish your drink if you've ever 'borrowed' my money without asking.", "Take a shot if you've ever dreamed about me.", "Drink if you think you're the better driver."
+        ];
+        const drinkingActions = [
+            "Take a sip of your drink.", "Take two sips of your drink.", "Finish your drink!", "Take a shot.", "Your partner takes a sip.", "You both take a sip.", "Bottoms up!", "Drink your partner's drink.", "Do a dare or take a shot.", "Waterfall! Start drinking and your partner can't stop until you do.", "Give a drink to your partner.", "Make a toast and you both drink.", "Skip your turn to drink.", "Drink every time your partner laughs for the next 2 minutes.", "Swap drinks with your partner.", "Take a sip for every pet you own (or want to own).", "Drink with your non-dominant hand for the rest of the game.", "Take a shot with no hands.", "The person with the longest hair drinks.", "The person who last used their phone drinks."
+        ];
+
+
+        // Function to render the correct game based on the ID
+        function renderGame(gameId) {
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`[onclick="renderGame('${gameId}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+            gameContentDiv.innerHTML = ''; // Clear previous content
+
+            switch(gameId) {
+                case 'home': renderHome(); break;
+                case 'couple-quiz': renderCoupleQuiz(); break;
+                case 'love-letter': renderLoveLetterGenerator(); break;
+                case 'date-wheel': renderSpinTheWheel(dateIdeas, "Your date is:"); break;
+                case 'drinking-wheel': renderSpinTheWheel(drinkingIdeas, "Your challenge is:"); break;
+                case 'truth-or-dare': renderTruthOrDare(); break;
+                case 'two-truths-lie': renderTwoTruthsAndALie(); break;
+                case 'would-you-rather': renderWouldYouRather(); break;
+                case 'never-have-i-ever': renderNeverHaveIEver(); break;
+                case 'dream-date': renderDreamDateBuilder(); break;
+                case 'guess-song': renderGuessThatSong(); break;
+                case 'memory-match': renderMemoryMatch(); break;
+                case 'draw-together': renderDrawTogether(); break;
+                case 'timeline': renderTimelineBuilder(); break;
+                case 'photo-hunt': renderPhotoScavengerHunt(); break;
+                case 'love-language': renderLoveLanguageQuiz(); break;
+                case 'story-starter': renderStoryStarter(); break;
+                case 'spicy-confessions': renderSpicyConfessions(); break;
+                case 'dare-or-drink': renderDareOrDrink(); break;
+                case 'intimate-wyr': renderIntimateWYR(); break;
+                case 'sexy-dice': renderSexyDice(); break;
+                case 'strip-trivia': renderStripTrivia(); break;
+                case 'forbidden-word': renderForbiddenWord(); break;
+                case 'blind-sensation': renderBlindSensation(); break;
+                case 'massage-challenge': renderMassageChallenge(); break;
+                default: renderHome();
+            }
+        }
+
+        // --- All 25 Game Render Functions ---
+        // (This section contains the complete, working code for every game function)
+
+        function renderCoupleQuiz() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Couple Quiz</h2>
+                    <p class="text-base md:text-lg">Answer questions about each other and see how well you know your partner!</p>
+                    <div id="quiz-area" class="w-full max-w-xl">
+                        <div class="mt-4 flex flex-col space-y-4">
+                            <h3 id="quiz-question" class="text-xl md:text-2xl font-semibold text-slate-800"></h3>
+                            <div class="input-group">
+                                <label for="partner1-answer" class="block">Your Answer:</label>
+                                <textarea id="partner1-answer" class="w-full h-24" placeholder="What's your answer?"></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label for="partner2-answer" class="block">Their Answer:</label>
+                                <textarea id="partner2-answer" class="w-full h-24" placeholder="What's their answer?"></textarea>
+                            </div>
+                            <button id="submit-quiz" class="btn">Submit & Compare</button>
+                            <div id="quiz-result" class="mt-4 text-lg font-semibold"></div>
+                            <button id="next-quiz" class="btn mt-4 hidden">Next Question</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const quizQuestionEl = document.getElementById('quiz-question');
+            const p1AnswerEl = document.getElementById('partner1-answer');
+            const p2AnswerEl = document.getElementById('partner2-answer');
+            const submitBtn = document.getElementById('submit-quiz');
+            const nextBtn = document.getElementById('next-quiz');
+            const resultEl = document.getElementById('quiz-result');
+            let currentQuestionIndex = 0;
+            const score = { partner1: 0, partner2: 0 };
+
+            function displayQuestion() {
+                if (currentQuestionIndex >= coupleQuizQuestions.length) {
+                    quizQuestionEl.textContent = "Quiz Complete!";
+                    p1AnswerEl.disabled = true;
+                    p2AnswerEl.disabled = true;
+                    submitBtn.classList.add('hidden');
+                    nextBtn.classList.add('hidden');
+                    resultEl.textContent = `Final Score: You both got ${score.partner1} questions right about each other!`;
+                    return;
+                }
+                const q = coupleQuizQuestions[currentQuestionIndex];
+                quizQuestionEl.textContent = q;
+                p1AnswerEl.value = "";
+                p2AnswerEl.value = "";
+                p1AnswerEl.disabled = false;
+                p2AnswerEl.disabled = false;
+                resultEl.textContent = '';
+                submitBtn.classList.remove('hidden');
+                nextBtn.classList.add('hidden');
+            }
+
+            submitBtn.addEventListener('click', () => {
+                const p1Text = p1AnswerEl.value.toLowerCase().trim();
+                const p2Text = p2AnswerEl.value.toLowerCase().trim();
+                if (p1Text === p2Text && p1Text !== "") {
+                    resultEl.textContent = "It's a match! 💕";
+                    resultEl.style.color = '#6d28d9';
+                    score.partner1++;
+                    score.partner2++;
+                } else {
+                    resultEl.textContent = "No match. 💔 Time to talk!";
+                    resultEl.style.color = '#f59e0b';
+                }
+                p1AnswerEl.disabled = true;
+                p2AnswerEl.disabled = true;
+                submitBtn.classList.add('hidden');
+                nextBtn.classList.remove('hidden');
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentQuestionIndex++;
+                displayQuestion();
+            });
+            displayQuestion();
+        }
+
+        function renderLoveLetterGenerator() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Digital Love Letter Generator</h2>
+                    <p class="text-base md:text-lg">Fill out the prompts to create a personalized, poetic love letter for your partner.</p>
+                    <div id="love-letter-form" class="w-full max-w-xl text-left">
+                        ${loveLetterPrompts.map((prompt, index) => `
+                            <div class="input-group mb-4">
+                                <label for="prompt-${index}" class="block mb-1">${prompt}</label>
+                                <textarea id="prompt-${index}" rows="2" class="w-full"></textarea>
+                            </div>
+                        `).join('')}
+                        <button id="generate-letter" class="btn w-full">Generate Letter</button>
+                    </div>
+                    <div id="letter-output" class="mt-8 text-left p-6 bg-slate-100 rounded-lg shadow-inner hidden w-full max-w-xl">
+                        <h3 class="text-2xl font-bold text-center text-violet-700 mb-4 font-['Pacifico']">A Letter to My Love</h3>
+                        <p id="letter-text" class="whitespace-pre-wrap leading-relaxed text-slate-700"></p>
+                    </div>
+                </div>
+            `;
+            const outputDiv = document.getElementById('letter-output');
+            const letterTextEl = document.getElementById('letter-text');
+            const generateBtn = document.getElementById('generate-letter');
+
+            generateBtn.addEventListener('click', () => {
+                let letterContent = "My Dearest,\n\n";
+                loveLetterPrompts.forEach((prompt, index) => {
+                    const answer = document.getElementById(`prompt-${index}`).value;
+                    if (answer) {
+                        letterContent += `I was just thinking about ${prompt.toLowerCase().replace('...', '')}, and it made me remember: ${answer}.\n`;
+                    }
+                });
+                letterContent += "\nForever and always,\nYour Love";
+                letterTextEl.textContent = letterContent;
+                outputDiv.classList.remove('hidden');
+            });
+        }
+
+        function renderSpinTheWheel(items, resultText) {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Spin-the-Wheel</h2>
+                    <p class="text-base md:text-lg">Can't decide what to do? Let fate choose your next challenge!</p>
+                    <div class="relative w-full max-w-xs sm:max-w-sm my-4">
+                        <canvas id="wheel-canvas" width="400" height="400" class="w-full h-auto max-w-full rounded-full"></canvas>
+                        <i class="fas fa-heart text-violet-700 text-4xl absolute" style="top: -20px; left: 50%; transform: translateX(-50%);"></i>
+                    </div>
+                    <button id="spin-btn" class="btn">Spin the Wheel!</button>
+                    <p id="wheel-result" class="mt-4 text-xl font-bold text-violet-700"></p>
+                </div>
+            `;
+
+            const canvas = document.getElementById('wheel-canvas');
+            const ctx = canvas.getContext('2d');
+            const spinBtn = document.getElementById('spin-btn');
+            const resultEl = document.getElementById('wheel-result');
+            const numSegments = items.length;
+            const segmentAngle = 2 * Math.PI / numSegments;
+            const colors = ['#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe'];
+            const center = { x: canvas.width / 2, y: canvas.height / 2 };
+            let spinning = false;
+            let currentRotation = 0;
+
+            function drawWheel() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < numSegments; i++) {
+                    const startAngle = i * segmentAngle;
+                    const endAngle = (i + 1) * segmentAngle;
+                    ctx.beginPath();
+                    ctx.moveTo(center.x, center.y);
+                    ctx.arc(center.x, center.y, center.x - 10, startAngle, endAngle);
+                    ctx.closePath();
+                    ctx.fillStyle = colors[i % colors.length];
+                    ctx.fill();
+                    ctx.save();
+                    ctx.translate(center.x, center.y);
+                    ctx.rotate(startAngle + segmentAngle / 2);
+                    ctx.textAlign = 'right';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = '#4c1d95';
+                    ctx.font = 'bold 10px Poppins';
+                    const text = items[i];
+                    ctx.fillText(text, center.x - 20, 0, center.x - 30);
+                    ctx.restore();
+                }
+            }
+
+            function spinWheel() {
+                if (spinning) return;
+                spinning = true;
+                resultEl.textContent = "";
+                const spinDegrees = 3600 + Math.random() * 360;
+                const finalRotation = currentRotation + spinDegrees;
+                canvas.style.transition = 'transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)';
+                canvas.style.transform = `rotate(${finalRotation}deg)`;
+                
+                setTimeout(() => {
+                    spinning = false;
+                    currentRotation = finalRotation % 360;
+                    canvas.style.transition = 'none';
+                    canvas.style.transform = `rotate(${currentRotation}deg)`;
+                    const finalAngle = (360 - currentRotation + 90) % 360;
+                    const segmentIndex = Math.floor(finalAngle / (360 / numSegments));
+                    resultEl.textContent = `${items[segmentIndex]}`;
+                }, 5000);
+            }
+
+            drawWheel();
+            spinBtn.addEventListener('click', spinWheel);
+        }
+
+        function renderTruthOrDare() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Truth or Dare</h2>
+                    <p class="text-base md:text-lg">Choose a truth to reveal or a spicy dare to perform!</p>
+                    <div id="tod-container" class="w-full max-w-xl mt-4">
+                        <p id="tod-text" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem] flex items-center justify-center text-center"></p>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                            <button id="truth-btn" class="btn flex-1">Get a Truth</button>
+                            <button id="dare-btn" class="btn btn-secondary flex-1">Get a Dare</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const textEl = document.getElementById('tod-text');
+            const truthBtn = document.getElementById('truth-btn');
+            const dareBtn = document.getElementById('dare-btn');
+            truthBtn.addEventListener('click', () => {
+                textEl.textContent = truths[Math.floor(Math.random() * truths.length)];
+            });
+            dareBtn.addEventListener('click', () => {
+                textEl.textContent = dares[Math.floor(Math.random() * dares.length)];
+            });
+        }
+
+        function renderWouldYouRather() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Would You Rather?</h2>
+                    <p class="text-base md:text-lg">Ask each other these fun and thought-provoking questions!</p>
+                    <div id="wyr-container" class="mt-4 w-full max-w-xl">
+                        <p id="wyr-question" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem]"></p>
+                        <button id="next-wyr" class="btn">Next Question</button>
+                    </div>
+                </div>
+            `;
+            const questionEl = document.getElementById('wyr-question');
+            const nextBtn = document.getElementById('next-wyr');
+            function displayRandomQuestion() {
+                questionEl.textContent = wouldYouRatherQuestions[Math.floor(Math.random() * wouldYouRatherQuestions.length)];
+            }
+            nextBtn.addEventListener('click', displayRandomQuestion);
+            displayRandomQuestion();
+        }
+
+        function renderNeverHaveIEver() {
+             gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Never Have I Ever</h2>
+                    <p class="text-base md:text-lg">Take turns with these statements. Be honest about what you've done!</p>
+                    <div id="nhie-container" class="mt-4 w-full max-w-xl">
+                        <p id="nhie-statement" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem]"></p>
+                        <button id="next-nhie" class="btn">Next Statement</button>
+                    </div>
+                </div>
+            `;
+            const statementEl = document.getElementById('nhie-statement');
+            const nextBtn = document.getElementById('next-nhie');
+            function displayRandomStatement() {
+                statementEl.textContent = neverHaveIEverStatements[Math.floor(Math.random() * neverHaveIEverStatements.length)];
+            }
+            nextBtn.addEventListener('click', displayRandomStatement);
+            displayRandomStatement();
+        }
+
+        function renderDreamDateBuilder() {
+            const funDateIdeas = {
+                home: {
+                    relaxing: {
+                        cozy: ["Build a pillow fort, fill it with fairy lights, and watch your favorite childhood movies.", "Have an at-home spa night with face masks, massages, and a bubble bath for two.", "Spend the evening listening to your favorite albums on vinyl with a glass of wine."],
+                        playful: ["Have a video game tournament with snacks and prizes for the winner.", "Learn a viral TikTok dance together and make a video.", "Do a blindfolded taste test with weird and wonderful foods from the kitchen."]
+                    },
+                    creative: {
+                        cozy: ["Follow a Bob Ross tutorial and paint landscapes together.", "Write a short story together, taking turns writing one sentence at a time.", "Create a 'couple's scrapbook' with photos and memories from your relationship."],
+                        playful: ["Have a 'Chopped' style cooking competition using only ingredients you already have.", "Create your own cocktails (or mocktails) and give them creative names.", "Put on a 'fashion show' with the most ridiculous outfits you can find in your closets."]
+                    }
+                },
+                city: {
+                    relaxing: {
+                        romantic: ["Find a jazz club for some smooth music and cocktails.", "Go to a late-night dessert bar and share a decadent treat.", "Stroll through a botanical garden or beautifully lit park at night."],
+                        playful: ["Go to a retro arcade or a bar with arcade games.", "Try an escape room and see if you can solve it as a team.", "Go bowling or play a round of glow-in-the-dark mini-golf."]
+                    },
+                    creative: {
+                        romantic: ["Take a dance class like salsa or tango.", "Visit an art gallery opening or a museum at night.", "Go to a poetry slam or an open mic night."],
+                        playful: ["Take an improv class for a night of laughs.", "Go on a street art scavenger hunt and take pictures with your favorite murals.", "Try a cooking class for a specific cuisine you both love."]
+                    }
+                },
+                nature: {
+                    relaxing: {
+                        cozy: ["Go stargazing far away from city lights with a cozy blanket and a thermos of hot chocolate.", "Have a bonfire on a beach (if permitted) and roast marshmallows.", "Find a quiet spot to watch the sunset or sunrise together."],
+                        romantic: ["Rent a canoe or a rowboat and spend an afternoon on a calm lake.", "Have a fancy picnic with a proper basket, blanket, and your favorite foods at a scenic viewpoint.", "Go for a horseback ride on a scenic trail."]
+                    },
+                    creative: {
+                        playful: ["Go geocaching and hunt for hidden treasures together.", "Build a kite and try to fly it in a big open field.", "Go berry picking or visit an apple orchard and then bake a pie together."]
+                    }
+                }
+            };
+
+            const dateTwists = [
+                "The Twist: You must speak in a foreign accent all night.",
+                "The Challenge: No phones allowed for the entire date (except for one picture!).",
+                "The Rule: You have to give each other a compliment every 15 minutes.",
+                "The Twist: Create new nicknames for each other and only use them for the entire date.",
+                "The Challenge: Find a small, silly gift for each other for under R50 during the date.",
+                "The Rule: The person whose birthday is next gets to be 'in charge' of all small decisions."
+            ];
+
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Dream Date Builder</h2>
+                    <p class="text-base md:text-lg">Mix and match the options to generate a fun, random date idea!</p>
+                    <div id="dream-date-container" class="w-full max-w-xl text-left mt-4">
+                        <div class="flex flex-col space-y-4">
+                            <div class="input-group">
+                                <label for="location" class="block">Location:</label>
+                                <select id="location" class="w-full">
+                                    <option value="home">At Home</option>
+                                    <option value="city">Out in the City</option>
+                                    <option value="nature">In Nature</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="activity" class="block">Activity Type:</label>
+                                <select id="activity" class="w-full">
+                                    <option value="relaxing">Relaxing & Chill</option>
+                                    <option value="creative">Creative & Hands-On</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="vibe" class="block">Vibe:</label>
+                                <select id="vibe" class="w-full">
+                                    <option value="cozy">Cozy & Intimate</option>
+                                    <option value="playful">Playful & Energetic</option>
+                                    <option value="romantic">Romantic & Classy</option>
+                                </select>
+                            </div>
+                            <button id="generate-dream-date" class="btn w-full">Generate My Dream Date</button>
+                        </div>
+                        <div id="dream-date-result-area" class="mt-6 text-center hidden">
+                            <p id="dream-date-result" class="text-lg font-semibold"></p>
+                            <p id="date-twist-result" class="mt-2 text-md text-amber-600 font-bold"></p>
+                            <button id="add-twist-btn" class="btn btn-secondary mt-4">Add a Fun Twist!</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const generateBtn = document.getElementById('generate-dream-date');
+            const resultArea = document.getElementById('dream-date-result-area');
+            const resultEl = document.getElementById('dream-date-result');
+            const twistBtn = document.getElementById('add-twist-btn');
+            const twistResultEl = document.getElementById('date-twist-result');
+
+            generateBtn.addEventListener('click', () => {
+                const location = document.getElementById('location').value;
+                const activity = document.getElementById('activity').value;
+                const vibe = document.getElementById('vibe').value;
+
+                let ideaPool = [];
+                if (funDateIdeas[location]?.[activity]?.[vibe]) {
+                    ideaPool = funDateIdeas[location][activity][vibe];
+                } else {
+                    ideaPool = funDateIdeas[location]?.[activity]?.['cozy'] || funDateIdeas[location]?.[activity]?.['playful'] || ["Go for a walk and just talk. It's a classic for a reason!"];
+                }
+
+                const randomIdea = ideaPool[Math.floor(Math.random() * ideaPool.length)];
+                resultEl.textContent = randomIdea;
+                twistResultEl.textContent = "";
+                twistBtn.classList.remove('hidden');
+                resultArea.classList.remove('hidden');
+            });
+
+            twistBtn.addEventListener('click', () => {
+                const randomTwist = dateTwists[Math.floor(Math.random() * dateTwists.length)];
+                twistResultEl.textContent = randomTwist;
+                twistBtn.classList.add('hidden');
+            });
+        }
+
+        function renderGuessThatSong() {
+             gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Guess That Song</h2>
+                    <p class="text-base md:text-lg">One person reads the lyrics, the other guesses the song title! You can even try to sing them.</p>
+                    <div id="song-game" class="w-full max-w-xl mt-4">
+                        <p id="song-lyrics" class="text-xl italic text-slate-700 mb-6 min-h-[6rem] flex items-center justify-center"></p>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                            <button id="next-song" class="btn flex-1">Next Lyrics</button>
+                            <button id="reveal-song" class="btn btn-secondary flex-1">Reveal Answer</button>
+                        </div>
+                        <p id="song-answer" class="mt-4 text-lg font-semibold hidden"></p>
+                    </div>
+                </div>
+            `;
+            const lyricsEl = document.getElementById('song-lyrics');
+            const nextBtn = document.getElementById('next-song');
+            const revealBtn = document.getElementById('reveal-song');
+            const answerEl = document.getElementById('song-answer');
+            let currentSong;
+
+            function displayRandomLyrics() {
+                currentSong = songs[Math.floor(Math.random() * songs.length)];
+                lyricsEl.textContent = `"${currentSong.lyrics}"`;
+                answerEl.textContent = '';
+                answerEl.classList.add('hidden');
+            }
+
+            revealBtn.addEventListener('click', () => {
+                if (currentSong) {
+                    answerEl.textContent = `Answer: ${currentSong.title}`;
+                    answerEl.classList.remove('hidden');
+                }
+            });
+
+            nextBtn.addEventListener('click', displayRandomLyrics);
+            displayRandomLyrics();
+        }
+
+        function renderMemoryMatch() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Memory Match Game</h2>
+                    <p class="text-base md:text-lg">Find the matching pairs of memories to test your shared knowledge!</p>
+                    <div id="memory-grid" class="grid grid-cols-4 gap-2 sm:gap-4 w-full max-w-2xl mt-4"></div>
+                    <p id="memory-result" class="mt-4 text-xl font-bold text-violet-700"></p>
+                    <button id="memory-reset" class="btn mt-4 hidden">Play Again</button>
+                </div>
+            `;
+            const grid = document.getElementById('memory-grid');
+            const resultEl = document.getElementById('memory-result');
+            const resetBtn = document.getElementById('memory-reset');
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let gameCards = [...memoryMatchCards, ...memoryMatchCards].sort(() => 0.5 - Math.random());
+
+            function createCard(text) {
+                const card = document.createElement('div');
+                card.classList.add('w-full', 'aspect-square', 'bg-slate-200', 'rounded-xl', 'flex', 'items-center', 'justify-center', 'p-2', 'cursor-pointer', 'transition-transform', 'duration-300', 'transform', 'text-center', 'text-sm', 'font-semibold', 'text-slate-600', 'select-none');
+                card.innerHTML = `<span class="hidden">${text}</span><i class="fas fa-heart text-3xl text-slate-400"></i>`;
+                card.addEventListener('click', () => flipCard(card));
+                return card;
+            }
+
+            function flipCard(card) {
+                if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                    card.classList.add('flipped');
+                    card.classList.remove('bg-slate-200');
+                    card.classList.add('bg-violet-400', 'text-white', 'text-base');
+                    card.querySelector('i').classList.add('hidden');
+                    card.querySelector('span').classList.remove('hidden');
+                    flippedCards.push(card);
+                    if (flippedCards.length === 2) {
+                        setTimeout(checkForMatch, 1000);
+                    }
+                }
+            }
+
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+                const text1 = card1.querySelector('span').textContent;
+                const text2 = card2.querySelector('span').textContent;
+                if (text1 === text2) {
+                    matchedPairs++;
+                    card1.style.pointerEvents = 'none';
+                    card2.style.pointerEvents = 'none';
+                    card1.classList.remove('bg-violet-400');
+                    card2.classList.remove('bg-violet-400');
+                    card1.classList.add('bg-amber-400');
+                    card2.classList.add('bg-amber-400');
+                    if (matchedPairs === memoryMatchCards.length) {
+                        resultEl.textContent = 'You matched all the memories! Great job!';
+                        resetBtn.classList.remove('hidden');
+                    }
+                } else {
+                    [card1, card2].forEach(c => {
+                        c.classList.remove('flipped', 'bg-violet-400', 'text-white', 'text-base');
+                        c.classList.add('bg-slate-200', 'text-slate-600');
+                        c.querySelector('i').classList.remove('hidden');
+                        c.querySelector('span').classList.add('hidden');
+                    });
+                }
+                flippedCards = [];
+            }
+
+            function initGame() {
+                gameCards = [...memoryMatchCards, ...memoryMatchCards].sort(() => 0.5 - Math.random());
+                grid.innerHTML = '';
+                flippedCards = [];
+                matchedPairs = 0;
+                resultEl.textContent = '';
+                resetBtn.classList.add('hidden');
+                gameCards.forEach(text => grid.appendChild(createCard(text)));
+            }
+            resetBtn.addEventListener('click', initGame);
+            initGame();
+        }
+
+        function renderDrawTogether() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Draw Together Canvas</h2>
+                    <p class="text-base md:text-lg">Draw a picture together! Pass the device back and forth to create a shared masterpiece.</p>
+                    <div class="w-full max-w-2xl border-2 border-slate-300 rounded-lg overflow-hidden">
+                        <canvas id="drawing-canvas" width="600" height="400" class="bg-white"></canvas>
+                    </div>
+                    <div class="flex space-x-2 mt-4">
+                        <input type="color" id="color-picker" value="#6d28d9" class="w-10 h-10 rounded-full border-2 border-white cursor-pointer">
+                        <button id="clear-canvas" class="btn">Clear</button>
+                    </div>
+                </div>
+            `;
+            const canvas = document.getElementById('drawing-canvas');
+            const ctx = canvas.getContext('2d');
+            const colorPicker = document.getElementById('color-picker');
+            const clearBtn = document.getElementById('clear-canvas');
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            function draw(e) {
+                if (!isDrawing) return;
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.strokeStyle = colorPicker.value;
+                ctx.lineWidth = 5;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+            }
+
+            canvas.addEventListener('mousedown', (e) => { isDrawing = true; [lastX, lastY] = [e.offsetX, e.offsetY]; });
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mouseout', () => isDrawing = false);
+            clearBtn.addEventListener('click', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+        }
+
+        function renderTimelineBuilder() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Relationship Timeline Builder</h2>
+                    <p class="text-base md:text-lg">Document your most cherished memories and milestones together.</p>
+                    <div id="timeline-form" class="w-full max-w-xl text-left">
+                        <div class="input-group mb-4">
+                            <label for="timeline-date" class="block">Date:</label>
+                            <input type="date" id="timeline-date" class="w-full">
+                        </div>
+                        <div class="input-group mb-4">
+                            <label for="timeline-milestone" class="block">Milestone:</label>
+                            <input type="text" id="timeline-milestone" class="w-full" placeholder="e.g. First Date, First Trip, Adopted a Pet">
+                        </div>
+                        <button id="add-milestone" class="btn w-full">Add Milestone</button>
+                    </div>
+                    <div id="timeline-display" class="mt-8 relative w-full text-left"></div>
+                </div>
+            `;
+            const dateInput = document.getElementById('timeline-date');
+            const milestoneInput = document.getElementById('timeline-milestone');
+            const addBtn = document.getElementById('add-milestone');
+            const displayDiv = document.getElementById('timeline-display');
+            const milestones = [];
+
+            function renderMilestones() {
+                milestones.sort((a, b) => new Date(a.date) - new Date(b.date));
+                displayDiv.innerHTML = milestones.map(m => `
+                    <div class="relative pl-8 mb-8 before:content-[''] before:absolute before:left-2 before:top-0 before:w-1 before:h-full before:bg-violet-300 before:rounded-full">
+                        <span class="absolute left-0 top-0 w-5 h-5 bg-violet-500 rounded-full"></span>
+                        <div class="ml-4 p-4 bg-white rounded-lg shadow-md">
+                            <h3 class="font-bold text-slate-800">${m.milestone}</h3>
+                            <p class="text-sm text-slate-500">${new Date(m.date + 'T00:00:00').toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            addBtn.addEventListener('click', () => {
+                if (dateInput.value && milestoneInput.value) {
+                    milestones.push({ date: dateInput.value, milestone: milestoneInput.value });
+                    dateInput.value = '';
+                    milestoneInput.value = '';
+                    renderMilestones();
+                }
+            });
+        }
+
+        function renderPhotoScavengerHunt() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Photo Scavenger Hunt</h2>
+                    <p class="text-base md:text-lg">Find and take photos that match these romantic prompts. A great excuse to make new memories!</p>
+                    <div id="photo-prompts" class="w-full max-w-xl text-left mt-4"></div>
+                </div>
+            `;
+            const promptsDiv = document.getElementById('photo-prompts');
+            promptsDiv.innerHTML = `
+                <ul class="space-y-4">
+                    ${photoHuntPrompts.map((p, index) => `
+                        <li class="p-4 bg-white rounded-xl shadow-sm flex items-center justify-between">
+                            <span>${p}</span>
+                            <button id="prompt-${index}" class="text-slate-400 hover:text-green-500 transition-colors">
+                                <i class="fas fa-camera text-xl"></i>
+                            </button>
+                        </li>
+                    `).join('')}
+                </ul>
+                <p id="hunt-status" class="mt-4 text-center text-lg font-semibold hidden"></p>
+            `;
+            const statusEl = document.getElementById('hunt-status');
+            const buttons = document.querySelectorAll('#photo-prompts button');
+            let completed = 0;
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (!btn.classList.contains('completed')) {
+                        btn.classList.add('completed', 'text-green-500');
+                        btn.classList.remove('text-slate-400');
+                        btn.innerHTML = '<i class="fas fa-check-circle text-xl"></i>';
+                        completed++;
+                        if (completed === photoHuntPrompts.length) {
+                            statusEl.textContent = "You've completed the hunt!";
+                            statusEl.classList.remove('hidden');
+                        }
+                    }
+                });
+            });
+        }
+        
+        function renderLoveLanguageQuiz() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Love Language Quiz</h2>
+                    <p class="text-base md:text-lg">Answer a few questions to find your primary love language.</p>
+                    <div id="ll-quiz-container" class="w-full max-w-xl text-left"></div>
+                </div>
+            `;
+            const container = document.getElementById('ll-quiz-container');
+            let currentQuestionIndex = 0;
+            const scores = {
+                "Words of Affirmation": 0,
+                "Acts of Service": 0,
+                "Receiving Gifts": 0,
+                "Quality Time": 0,
+                "Physical Touch": 0
+            };
+            const llQuiz = [
+                { q: "It's more meaningful to me when...", a: "I receive a heartfelt note from my partner.", b: "My partner helps me with a task.", langA: "Words of Affirmation", langB: "Acts of Service" },
+                { q: "I feel most loved when...", a: "My partner and I are just hanging out, enjoying each other's company.", b: "My partner gives me a surprise gift.", langA: "Quality Time", langB: "Receiving Gifts" },
+                { q: "What makes you feel most special?", a: "A warm hug from my partner.", b: "Hearing my partner say 'I'm proud of you.'", langA: "Physical Touch", langB: "Words of Affirmation" },
+                { q: "I feel cared for when...", a: "My partner brings me my favorite snack without me asking.", b: "My partner puts their phone away so we can talk.", langA: "Acts of Service", langB: "Quality Time" },
+                { q: "A special occasion feels best when...", a: "I get a thoughtful present.", b: "My partner holds my hand while we're out.", langA: "Receiving Gifts", langB: "Physical Touch" },
+            ];
+
+            function showResult() {
+                let topLanguage = "Words of Affirmation";
+                let maxScore = 0;
+                for (const lang in scores) {
+                    if (scores[lang] > maxScore) {
+                        maxScore = scores[lang];
+                        topLanguage = lang;
+                    }
+                }
+                const resultInfo = loveLanguages.find(l => l.language === topLanguage);
+                container.innerHTML = `
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-violet-700">Your primary love language is:</h3>
+                        <p class="text-4xl font-['Pacifico'] text-amber-500 my-4">${resultInfo.language}</p>
+                        <p class="text-slate-600">${resultInfo.description}</p>
+                        <button onclick="renderLoveLanguageQuiz()" class="btn mt-6">Take Again</button>
+                    </div>
+                `;
+            }
+
+            function showQuestion() {
+                if (currentQuestionIndex >= llQuiz.length) {
+                    showResult();
+                    return;
+                }
+                const q = llQuiz[currentQuestionIndex];
+                container.innerHTML = `
+                    <p class="text-xl font-semibold text-slate-800 mb-4 text-center">${q.q}</p>
+                    <div class="flex flex-col space-y-4">
+                        <button class="ll-option p-4 bg-slate-100 rounded-xl text-left hover:bg-slate-200 transition-colors" data-lang="${q.langA}">${q.a}</button>
+                        <button class="ll-option p-4 bg-slate-100 rounded-xl text-left hover:bg-slate-200 transition-colors" data-lang="${q.langB}">${q.b}</button>
+                    </div>
+                `;
+                document.querySelectorAll('.ll-option').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        scores[e.target.dataset.lang]++;
+                        currentQuestionIndex++;
+                        showQuestion();
+                    });
+                });
+            }
+            showQuestion();
+        }
+
+        function renderStoryStarter() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Story Starter</h2>
+                    <p class="text-base md:text-lg">Start a story, then pass the device to your partner to continue it. Build a fun and creative story together!</p>
+                    <div id="story-container" class="w-full max-w-xl mt-4 text-left">
+                        <div id="current-story" class="text-lg mb-4 p-4 bg-slate-100 rounded-xl min-h-[10rem]"></div>
+                        <div class="input-group mb-4">
+                            <label for="story-input" class="block">Your turn to add to the story:</label>
+                            <textarea id="story-input" rows="3" class="w-full" placeholder="Continue the story here..."></textarea>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button id="add-sentence" class="btn flex-1">Add to Story</button>
+                            <button id="reset-story" class="btn btn-secondary flex-1">Start New Story</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const storyEl = document.getElementById('current-story');
+            const inputEl = document.getElementById('story-input');
+            const addBtn = document.getElementById('add-sentence');
+            const resetBtn = document.getElementById('reset-story');
+            let story = "Once upon a time, in a castle made of gingerbread, lived a dragon who was afraid of mice.";
+
+            function renderStory() {
+                storyEl.textContent = story;
+            }
+
+            addBtn.addEventListener('click', () => {
+                const sentence = inputEl.value;
+                if (sentence) {
+                    story += " " + sentence;
+                    inputEl.value = "";
+                    renderStory();
+                }
+            });
+
+            resetBtn.addEventListener('click', () => {
+                story = "In a bustling city powered by singing cats, a detective made of cheese was about to crack his toughest case.";
+                renderStory();
+            });
+            renderStory();
+        }
+        
+        function renderTwoTruthsAndALie() {
+            const fieldTypes = ['Truth', 'Truth', 'Lie'].sort(() => 0.5 - Math.random());
+            const lieIndex = fieldTypes.indexOf('Lie');
+
+            const inputsHTML = fieldTypes.map((type, index) => `
+                <div class="input-group mb-4">
+                    <label for="statement-input-${index}" class="block">Statement ${index + 1}:</label>
+                    <input type="text" id="statement-input-${index}" class="w-full" placeholder="Enter a juicy statement...">
+                </div>
+            `).join('');
+
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Two Truths and a Lie</h2>
+                    <p class="text-base md:text-lg">One of you, fill in the three boxes below. Then, have your partner guess which statement is the lie!</p>
+                    <div id="ttal-form" class="w-full max-w-xl text-left">
+                        ${inputsHTML}
+                        <button id="submit-ttal" class="btn w-full">Mix them up!</button>
+                    </div>
+                    <div id="ttal-reveal" class="mt-8 w-full max-w-xl hidden">
+                        <p class="text-xl font-bold mb-4">Partner, which one is the lie?</p>
+                        <ul id="statement-list" class="text-left space-y-2"></ul>
+                        <button id="reveal-lie" class="btn btn-secondary mt-4">Reveal the Lie</button>
+                        <p id="lie-result" class="mt-4 text-lg font-semibold hidden"></p>
+                    </div>
+                </div>
+            `;
+            const formDiv = document.getElementById('ttal-form');
+            const revealDiv = document.getElementById('ttal-reveal');
+            const submitBtn = document.getElementById('submit-ttal');
+
+            submitBtn.addEventListener('click', () => {
+                const s0 = document.getElementById('statement-input-0').value;
+                const s1 = document.getElementById('statement-input-1').value;
+                const s2 = document.getElementById('statement-input-2').value;
+                
+                if (!s0 || !s1 || !s2) {
+                    alert('Please fill in all three statements!');
+                    return;
+                }
+
+                const allInputs = [s0, s1, s2];
+                const lieText = allInputs[lieIndex];
+                
+                formDiv.classList.add('hidden');
+                revealDiv.classList.remove('hidden');
+
+                const statements = allInputs.sort(() => 0.5 - Math.random());
+                const statementList = document.getElementById('statement-list');
+                statementList.innerHTML = statements.map(s => `<li><span class="p-3 bg-slate-100 rounded-md block">${s}</span></li>`).join('');
+                
+                const revealBtn = document.getElementById('reveal-lie');
+                const resultEl = document.getElementById('lie-result');
+                revealBtn.addEventListener('click', () => {
+                    resultEl.textContent = `The lie was: "${lieText}"`;
+                    resultEl.classList.remove('hidden');
+                    revealBtn.classList.add('hidden');
+                });
+            });
+        }
+        
+        function renderIntimateWYR() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Intimate Would You Rather?</h2>
+                    <p class="text-base md:text-lg">Take turns asking these spicy questions. Be honest!</p>
+                    <div id="wyr-container" class="mt-4 w-full max-w-xl">
+                        <p id="wyr-question" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem]"></p>
+                        <button id="next-wyr" class="btn">Next Question</button>
+                    </div>
+                </div>
+            `;
+            const questionEl = document.getElementById('wyr-question');
+            const nextBtn = document.getElementById('next-wyr');
+
+            function displayRandomQuestion() {
+                const randomQuestion = intimateWYRQuestions[Math.floor(Math.random() * intimateWYRQuestions.length)];
+                questionEl.textContent = `Would you rather... ${randomQuestion}`;
+            }
+            nextBtn.addEventListener('click', displayRandomQuestion);
+            displayRandomQuestion();
+        }
+
+        function renderSexyDice() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Sexy Dice</h2>
+                    <p class="text-base md:text-lg">Roll the dice. Perform the action on the chosen body part. Take turns!</p>
+                    <div class="flex space-x-4 sm:space-x-8 my-8">
+                        <div id="dice-action" class="w-24 h-24 sm:w-32 sm:h-32 bg-slate-200 rounded-lg flex items-center justify-center text-lg font-bold text-center p-2 shadow-inner">Action</div>
+                        <div id="dice-body" class="w-24 h-24 sm:w-32 sm:h-32 bg-slate-200 rounded-lg flex items-center justify-center text-lg font-bold text-center p-2 shadow-inner">Body Part</div>
+                    </div>
+                    <button id="roll-dice" class="btn">Roll the Dice!</button>
+                </div>
+            `;
+            const actionEl = document.getElementById('dice-action');
+            const bodyEl = document.getElementById('dice-body');
+            const rollBtn = document.getElementById('roll-dice');
+
+            rollBtn.addEventListener('click', () => {
+                rollBtn.disabled = true;
+                let counter = 0;
+                const interval = setInterval(() => {
+                    actionEl.textContent = diceActions[Math.floor(Math.random() * diceActions.length)];
+                    bodyEl.textContent = diceBodyParts[Math.floor(Math.random() * diceBodyParts.length)];
+                    counter++;
+                    if(counter > 15) {
+                        clearInterval(interval);
+                        rollBtn.disabled = false;
+                    }
+                }, 100);
+            });
+        }
+
+        function renderStripTrivia() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Strip Trivia</h2>
+                    <p class="text-base md:text-lg">Answer the question about your relationship. If you get it wrong, you lose an item of clothing!</p>
+                    <div id="trivia-container" class="mt-4 w-full max-w-xl">
+                        <p id="trivia-question" class="text-xl md:text-2xl font-bold text-slate-800 mb-6"></p>
+                        <p id="trivia-answer" class="text-lg font-semibold hidden mb-4"></p>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                            <button id="show-answer" class="btn btn-secondary flex-1">I don't know / Show Answer</button>
+                            <button id="next-question" class="btn flex-1">Next Question</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const questionEl = document.getElementById('trivia-question');
+            const answerEl = document.getElementById('trivia-answer');
+            const showBtn = document.getElementById('show-answer');
+            const nextBtn = document.getElementById('next-question');
+            let currentTrivia;
+
+            function displayQuestion() {
+                currentTrivia = stripTriviaQuestions[Math.floor(Math.random() * stripTriviaQuestions.length)];
+                questionEl.textContent = currentTrivia.q;
+                answerEl.classList.add('hidden');
+                answerEl.textContent = `The answer is up to you! If you get it wrong, lose an item... 😉`;
+                showBtn.classList.remove('hidden');
+            }
+            
+            showBtn.addEventListener('click', () => {
+                answerEl.classList.remove('hidden');
+                showBtn.classList.add('hidden');
+            });
+            nextBtn.addEventListener('click', displayQuestion);
+            displayQuestion();
+        }
+
+        function renderForbiddenWord() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Forbidden Word Challenge</h2>
+                    <p class="text-base md:text-lg">Each of you picks a 'forbidden word' for your partner. Try to trick them into saying it in the next 10 minutes. If they say it, they owe you a dare!</p>
+                    <div class="text-lg">
+                        <p class="mb-4">Get a piece of paper or use your notes app.</p>
+                        <p class="mb-2"><strong class="text-violet-600">Player 1:</strong> Write down a common word your partner says (e.g., "like", "actually", "babe").</p>
+                        <p class="mb-4"><strong class="text-amber-500">Player 2:</strong> Do the same for Player 1.</p>
+                        <p>Show each other the forbidden words. Start a 10-minute timer and start talking. Good luck!</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBlindSensation() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Blindfolded Sensation</h2>
+                    <p class="text-base md:text-lg">One person is blindfolded. The other uses different things to gently touch their skin. Guess the object!</p>
+                    <p id="sensation-idea" class="text-3xl font-bold text-violet-700 my-8"></p>
+                    <button id="next-sensation" class="btn">Get a Sensation Idea</button>
+                </div>
+            `;
+            const ideaEl = document.getElementById('sensation-idea');
+            const nextBtn = document.getElementById('next-sensation');
+
+            function displayIdea() {
+                const randomIdea = sensationItems[Math.floor(Math.random() * sensationItems.length)];
+                ideaEl.textContent = `Try using a... ${randomIdea}`;
+            }
+
+            nextBtn.addEventListener('click', displayIdea);
+            displayIdea();
+        }
+        
+        function renderMassageChallenge() {
+             gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Intimate Massage Challenge</h2>
+                    <p class="text-base md:text-lg">Let the app choose a sensual massage challenge for one of you to perform.</p>
+                    <div id="massage-container" class="w-full max-w-xl mt-4">
+                        <p id="massage-text" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem] flex items-center justify-center text-center"></p>
+                        <button id="next-massage" class="btn w-full">Get a New Challenge</button>
+                    </div>
+                </div>
+            `;
+            const textEl = document.getElementById('massage-text');
+            const nextBtn = document.getElementById('next-massage');
+            function displayRandomChallenge() {
+                textEl.textContent = massageChallenges[Math.floor(Math.random() * massageChallenges.length)];
+            }
+            nextBtn.addEventListener('click', displayRandomChallenge);
+            displayRandomChallenge();
+        }
+
+        function renderDareOrDrink() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Dare or Drink</h2>
+                    <p class="text-base md:text-lg">Perform the dare or take a drink! The choice is yours...</p>
+                    <div id="dod-container" class="w-full max-w-xl mt-4">
+                        <p id="dod-text" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem] flex items-center justify-center text-center"></p>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                            <button id="dare-btn" class="btn flex-1">Get a Dare</button>
+                            <button id="drink-btn" class="btn btn-secondary flex-1">Get a Drink Challenge</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const textEl = document.getElementById('dod-text');
+            const dareBtn = document.getElementById('dare-btn');
+            const drinkBtn = document.getElementById('drink-btn');
+            dareBtn.addEventListener('click', () => {
+                textEl.textContent = dares[Math.floor(Math.random() * dares.length)];
+            });
+            drinkBtn.addEventListener('click', () => {
+                textEl.textContent = drinkingActions[Math.floor(Math.random() * drinkingActions.length)];
+            });
+        }
+
+        function renderSpicyConfessions() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Spicy Confessions</h2>
+                    <p class="text-base md:text-lg">Take turns answering these provocative questions. Be honest!</p>
+                    <div id="spicy-container" class="w-full max-w-xl mt-4">
+                        <p id="spicy-text" class="text-xl md:text-2xl font-bold text-slate-800 mb-6 min-h-[5rem] flex items-center justify-center text-center"></p>
+                        <button id="next-spicy" class="btn w-full">Next Spicy Prompt</button>
+                    </div>
+                </div>
+            `;
+            const textEl = document.getElementById('spicy-text');
+            const nextBtn = document.getElementById('next-spicy');
+            function displayRandomPrompt() {
+                textEl.textContent = spicyConfessions[Math.floor(Math.random() * spicyConfessions.length)];
+            }
+            nextBtn.addEventListener('click', displayRandomPrompt);
+            displayRandomPrompt();
+        }
+
+        function renderHome() {
+            const gameGridHTML = allGames.map(game => `
+                <button onclick="renderGame('${game.id}')" class="flex flex-col items-center justify-center p-4 bg-white rounded-2xl shadow-md hover:shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300 text-center">
+                    <i class="fas ${game.icon} ${game.color} text-4xl mb-3"></i>
+                    <span class="font-semibold text-slate-700 text-sm">${game.name}</span>
+                </button>
+            `).join('');
+
+            gameContentDiv.innerHTML = `
+                <div class="game-card" style="justify-content: flex-start;">
+                    <h2 class="text-4xl text-violet-700 mb-2">Welcome to Busa's Datenight Games!</h2>
+                    <p class="text-slate-600 mb-6">Select a game from the grid below to start the fun!</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                        ${gameGridHTML}
+                    </div>
+                </div>
+            `;
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.trim() === 'Home') {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        window.onload = () => {
+            renderGame('home');
+        };
+    </script>
+</body>
+</html>
