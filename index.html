@@ -89,6 +89,7 @@
                 <button onclick="renderGame('never-have-i-ever')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-hand-holding-heart mr-2 text-violet-500 w-6 text-center"></i> Never Have I Ever</button>
                 <button onclick="renderGame('dream-date')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-champagne-glasses mr-2 text-violet-500 w-6 text-center"></i> Dream Date Builder</button>
                 <button onclick="renderGame('guess-song')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-music mr-2 text-violet-500 w-6 text-center"></i> Guess That Song</button>
+                <button onclick="renderGame('karaoke-night')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-microphone mr-2 text-violet-500 w-6 text-center"></i> Karaoke Night</button>
                 <button onclick="renderGame('memory-match')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-brain mr-2 text-violet-500 w-6 text-center"></i> Memory Match</button>
                 <button onclick="renderGame('draw-together')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-paint-brush mr-2 text-violet-500 w-6 text-center"></i> Draw Together</button>
                 <button onclick="renderGame('timeline')" class="nav-link bg-slate-100 text-slate-700 font-semibold p-3 rounded-xl text-left"><i class="fas fa-timeline mr-2 text-violet-500 w-6 text-center"></i> Relationship Timeline</button>
@@ -136,6 +137,7 @@
             { id: 'never-have-i-ever', name: 'Never Have I Ever', icon: 'fa-hand-holding-heart', color: 'text-violet-500' },
             { id: 'dream-date', name: 'Dream Date Builder', icon: 'fa-champagne-glasses', color: 'text-violet-500' },
             { id: 'guess-song', name: 'Guess That Song', icon: 'fa-music', color: 'text-violet-500' },
+            { id: 'karaoke-night', name: 'Karaoke Night', icon: 'fa-microphone', color: 'text-violet-500' },
             { id: 'memory-match', name: 'Memory Match', icon: 'fa-brain', color: 'text-violet-500' },
             { id: 'draw-together', name: 'Draw Together', icon: 'fa-paint-brush', color: 'text-violet-500' },
             { id: 'timeline', name: 'Relationship Timeline', icon: 'fa-timeline', color: 'text-violet-500' },
@@ -203,6 +205,9 @@
         const songs = [
                 { lyrics: "I found a love for me. Darling, just dive right in, and follow my lead...", title: "Perfect - Ed Sheeran" }, { lyrics: "You're still the one I run to. The one that I belong to...", title: "You're Still The One - Shania Twain" }, { lyrics: "And when you smile, the whole world stops and stares for a while...", title: "Just the Way You Are - Bruno Mars" }, { lyrics: "'Cause all of me loves all of you. Love your curves and all your edges...", title: "All of Me - John Legend" }, { lyrics: "Wise men say only fools rush in. But I can't help falling in love with you...", title: "Can't Help Falling in Love - Elvis Presley" }, { lyrics: "I have died every day waiting for you. Darling, don't be afraid I have loved you for a thousand years...", title: "A Thousand Years - Christina Perri" }, { lyrics: "When the evening shadows and the stars appear, and there is no one there to dry your tears, I could hold you for a million years...", title: "Make You Feel My Love - Adele" }, { lyrics: "At last, my love has come along. My lonely days are over, and life is like a song...", title: "At Last - Etta James" }, { lyrics: "I'm so in love with you, whatever you want to do is all right with me...", title: "Let's Stay Together - Al Green" }, { lyrics: "And I'd give up forever to touch you, 'cause I know that you feel me somehow...", title: "Iris - Goo Goo Dolls" }, { lyrics: "It's a beautiful night, we're looking for something dumb to do. Hey baby, I think I wanna marry you...", title: "Marry You - Bruno Mars" }, { lyrics: "Remember those walls I built? Well, baby, they're tumbling down. And they didn't even put up a fight...", title: "Halo - Beyoncé" }, { lyrics: "I hope you don't mind that I put down in words how wonderful life is while you're in the world...", title: "Your Song - Elton John" }, { lyrics: "Something in the way she moves attracts me like no other lover...", title: "Something - The Beatles" }, { lyrics: "I'm lucky I'm in love with my best friend. Lucky to have been where I have been...", title: "Lucky - Jason Mraz & Colbie Caillat" }, { lyrics: "And it's you and me and all of the people... and I don't know why, I can't keep my eyes off of you.", title: "Home - Edward Sharpe & The Magnetic Zeros" }, { lyrics: "It's a love story, baby, just say 'Yes'.", title: "Love Story - Taylor Swift" }, { lyrics: "I could make you happy, make your dreams come true. Nothing that I wouldn't do...", title: "I Wanna Be Yours - Arctic Monkeys" }, { lyrics: "Every little thing she does is magic. Everything she do just turns me on...", title: "Every Little Thing She Does Is Magic - The Police" }, { lyrics: "If you're lost you can look and you will find me... If you fall, I will catch you, I'll be waiting...", title: "Time After Time - Cyndi Lauper" }, { lyrics: "Near, far, wherever you are, I believe that the heart does go on...", title: "My Heart Will Go On - Celine Dion" }
         ];
+        const karaokeSongs = [
+            { title: "I Will Always Love You", artist: "Whitney Houston" }, { title: "Bohemian Rhapsody", artist: "Queen" }, { title: "Don't Stop Believin'", artist: "Journey" }, { title: "Livin' on a Prayer", artist: "Bon Jovi" }, { title: "Sweet Caroline", artist: "Neil Diamond" }, { title: "Wannabe", artist: "Spice Girls" }, { title: "I Want It That Way", artist: "Backstreet Boys" }, { title: "Shallow", artist: "Lady Gaga & Bradley Cooper" }, { title: "Someone Like You", artist: "Adele" }, { title: "Mr. Brightside", artist: "The Killers" }, { title: "Valerie", artist: "Amy Winehouse" }, { title: "Wonderwall", artist: "Oasis" }, { title: "Africa", artist: "Toto" }, { title: "Dancing Queen", artist: "ABBA" }, { title: "Billie Jean", artist: "Michael Jackson" }, { title: "My Heart Will Go On", artist: "Celine Dion" }, { title: "Total Eclipse of the Heart", artist: "Bonnie Tyler" }, { title: "Like a Prayer", artist: "Madonna" }, { title: "Hallelujah", artist: "Leonard Cohen" }, { title: "All of Me", artist: "John Legend" }
+        ];
         const dateIdeas = [
             "Movie night at home with blankets and popcorn", "Cook a fancy dinner together", "Go for a scenic hike or walk", "Build a fort and tell stories inside", "Have a DIY spa day with face masks", "Go stargazing with a blanket and thermos", "Visit a local art gallery or museum", "Have a picnic in the park", "Go to a live comedy show", "Try a new restaurant neither of you have been to", "Game night with your favorite board games", "Go to a concert or listen to your favorite album together", "Create a new playlist for the two of you", "Have a dance party in the living room", "Go bowling or play mini-golf", "Visit a farmers market", "Take a pottery class", "Go to a drive-in movie", "Volunteer together", "Go kayaking or canoeing"
         ];
@@ -235,6 +240,7 @@
                 case 'never-have-i-ever': renderNeverHaveIEver(); break;
                 case 'dream-date': renderDreamDateBuilder(); break;
                 case 'guess-song': renderGuessThatSong(); break;
+                case 'karaoke-night': renderKaraoke(); break;
                 case 'memory-match': renderMemoryMatch(); break;
                 case 'draw-together': renderDrawTogether(); break;
                 case 'timeline': renderTimelineBuilder(); break;
@@ -253,7 +259,7 @@
             }
         }
 
-        // --- All 25 Game Render Functions ---
+        // --- All 26 Game Render Functions ---
         // (This section contains the complete, working code for every game function)
 
         function renderCoupleQuiz() {
@@ -348,27 +354,58 @@
                         `).join('')}
                         <button id="generate-letter" class="btn w-full">Generate Letter</button>
                     </div>
-                    <div id="letter-output" class="mt-8 text-left p-6 bg-slate-100 rounded-lg shadow-inner hidden w-full max-w-xl">
-                        <h3 class="text-2xl font-bold text-center text-violet-700 mb-4 font-['Pacifico']">A Letter to My Love</h3>
-                        <p id="letter-text" class="whitespace-pre-wrap leading-relaxed text-slate-700"></p>
+                    <div id="letter-output" class="mt-8 text-center hidden w-full max-w-xl">
+                        <div class="text-left p-6 bg-slate-100 rounded-lg shadow-inner">
+                            <h3 class="text-2xl font-bold text-center text-violet-700 mb-4 font-['Pacifico']">A Letter to My Love</h3>
+                            <p id="letter-text" class="whitespace-pre-wrap leading-relaxed text-slate-700"></p>
+                        </div>
+                        <button id="clear-letter-btn" class="btn btn-secondary mt-4">Write a New Letter</button>
                     </div>
                 </div>
             `;
+            const formDiv = document.getElementById('love-letter-form');
             const outputDiv = document.getElementById('letter-output');
             const letterTextEl = document.getElementById('letter-text');
             const generateBtn = document.getElementById('generate-letter');
 
             generateBtn.addEventListener('click', () => {
                 let letterContent = "My Dearest,\n\n";
-                loveLetterPrompts.forEach((prompt, index) => {
-                    const answer = document.getElementById(`prompt-${index}`).value;
-                    if (answer) {
-                        letterContent += `I was just thinking about ${prompt.toLowerCase().replace('...', '')}, and it made me remember: ${answer}.\n`;
+                let filledPrompts = 0;
+                const answers = loveLetterPrompts.map((prompt, index) => {
+                    return { prompt: prompt, answer: document.getElementById(`prompt-${index}`).value };
+                }).filter(item => item.answer.trim() !== "");
+
+                if (answers.length === 0) {
+                    alert("Please fill out at least one prompt!");
+                    return;
+                }
+
+                answers.forEach((item, index) => {
+                    let connectingPhrase = "";
+                    if (index === 0) {
+                        connectingPhrase = "I was just thinking about ";
+                    } else if (index === answers.length - 1) {
+                        connectingPhrase = "And most importantly, I want you to know that ";
+                    } else {
+                        const phrases = ["It also makes me smile when I remember ", "I can't help but think about ", "Something else on my mind is ", "And I'll never forget "];
+                        connectingPhrase = phrases[Math.floor(Math.random() * phrases.length)];
                     }
+                    letterContent += `${connectingPhrase}${item.prompt.toLowerCase().replace('...', '')}: ${item.answer}.\n\n`;
                 });
+
                 letterContent += "\nForever and always,\nYour Love";
                 letterTextEl.textContent = letterContent;
+                formDiv.classList.add('hidden');
                 outputDiv.classList.remove('hidden');
+
+                const clearBtn = document.getElementById('clear-letter-btn');
+                clearBtn.addEventListener('click', () => {
+                    loveLetterPrompts.forEach((prompt, index) => {
+                        document.getElementById(`prompt-${index}`).value = '';
+                    });
+                    outputDiv.classList.add('hidden');
+                    formDiv.classList.remove('hidden');
+                });
             });
         }
 
@@ -661,6 +698,43 @@
 
             nextBtn.addEventListener('click', displayRandomLyrics);
             displayRandomLyrics();
+        }
+
+        function renderKaraoke() {
+            gameContentDiv.innerHTML = `
+                <div class="game-card">
+                    <h2 class="text-3xl md:text-4xl">Karaoke Night</h2>
+                    <p class="text-base md:text-lg">Time to warm up those vocal cords! Get a random song suggestion below.</p>
+                    <div id="karaoke-container" class="mt-4 w-full max-w-xl">
+                        <div id="song-suggestion" class="p-6 bg-slate-100 rounded-lg shadow-inner">
+                            <p id="song-title" class="text-2xl font-bold text-slate-800"></p>
+                            <p id="song-artist" class="text-lg text-slate-500"></p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mt-6">
+                            <button id="next-karaoke-song" class="btn flex-1">Get New Song</button>
+                            <a id="youtube-link" href="#" target="_blank" class="btn btn-secondary flex-1 inline-flex items-center justify-center">
+                                <i class="fab fa-youtube mr-2"></i> Sing on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const titleEl = document.getElementById('song-title');
+            const artistEl = document.getElementById('song-artist');
+            const nextBtn = document.getElementById('next-karaoke-song');
+            const youtubeLink = document.getElementById('youtube-link');
+
+            function displayRandomSong() {
+                const song = karaokeSongs[Math.floor(Math.random() * karaokeSongs.length)];
+                titleEl.textContent = song.title;
+                artistEl.textContent = song.artist;
+                const searchQuery = encodeURIComponent(`${song.artist} ${song.title} karaoke`);
+                youtubeLink.href = `https://www.youtube.com/results?search_query=${searchQuery}`;
+            }
+
+            nextBtn.addEventListener('click', displayRandomSong);
+            displayRandomSong();
         }
 
         function renderMemoryMatch() {
